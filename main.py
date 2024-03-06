@@ -1,41 +1,33 @@
-import PyQt5
-from PyQt5 import QtWidgets
-from PyQt5.QtCore import Qt
-from PyQt5.QtWidgets import QApplication, QMainWindow
-
-import sys
-
-class MyWindow(QMainWindow):
-    def __init__(self):
-        super(MyWindow, self).__init__()
-        self.setGeometry(1300, 500, 500, 500)
-        self.setWindowTitle("To Do List")
-        self.initUI()
-
-    def initUI(self):
-        self.label = QtWidgets.QLabel(self)
-        self.label.setText("Balls")
-        self.label.move(100, 100)
-
-        self.b1 = QtWidgets.QPushButton(self)
-        self.b1.setText("Click Me!")
-        self.b1.clicked.connect(self.clicked)
-
-    def clicked(self):
-        self.label.setText("You have pressed the button, bitch")
-        self.update()
-
-    def update(self):
-        self.label.adjustSize()
+import kivy
+from kivy.app import App
+from kivy.uix.label import Label
+from kivy.uix.gridlayout import GridLayout
+from kivy.uix.textinput import TextInput
 
 
-def window():
-    app = QApplication(sys.argv)
-    win = MyWindow()
+class MyGrid(GridLayout):
+    def __init__(self, **kwargs):
+        super(MyGrid, self).__init__(**kwargs)
+        self.cols = 2
+        self.add_widget(Label(text="Frist Name:"))
+        self.first_name = TextInput(multiline=False)
+        self.add_widget(self.first_name)
 
-    win.show()
-    sys.exit(app.exec_())
+        self.add_widget(Label(text="Last Name:"))
+        self.last_name = TextInput(multiline=False)
+        self.add_widget(self.last_name)
+
+        self.add_widget(Label(text="Age:"))
+        self.age = TextInput(multiline=False)
+        self.add_widget(self.age)
+
+
+
+class MyApp(App):
+    def build(self):
+        return MyGrid()
+    
 
 
 if __name__ == "__main__":
-    window()
+    MyApp().run()
