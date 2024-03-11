@@ -3,24 +3,44 @@ from kivy.app import App
 from kivy.uix.label import Label
 from kivy.uix.gridlayout import GridLayout
 from kivy.uix.textinput import TextInput
+from kivy.uix.button import Button
 
 
 class MyGrid(GridLayout):
     def __init__(self, **kwargs):
         super(MyGrid, self).__init__(**kwargs)
-        self.cols = 2
-        self.add_widget(Label(text="Frist Name:"))
+
+        self.cols = 1
+
+        self.inside = GridLayout()
+        self.inside.cols = 2
+
+        self.inside.add_widget(Label(text="Frist Name:"))
         self.first_name = TextInput(multiline=False)
-        self.add_widget(self.first_name)
+        self.inside.add_widget(self.first_name)
 
-        self.add_widget(Label(text="Last Name:"))
+        self.inside.add_widget(Label(text="Last Name:"))
         self.last_name = TextInput(multiline=False)
-        self.add_widget(self.last_name)
+        self.inside.add_widget(self.last_name)
 
-        self.add_widget(Label(text="Age:"))
+        self.inside.add_widget(Label(text="Age:"))
         self.age = TextInput(multiline=False)
-        self.add_widget(self.age)
+        self.inside.add_widget(self.age)
 
+        self.add_widget(self.inside)
+
+        self.submit = Button(text="Submit", font_size=40)
+        self.submit.bind(on_press=self.pressed)
+        self.add_widget(self.submit)
+    
+    def pressed(self, instance):
+        first = self.first_name.text
+        last = self.last_name.text
+        name = f"{first} {last}"
+        age = self.age.text
+
+        print(f"Name: {name.title()}")
+        print(f"Age: {age}")
 
 
 class MyApp(App):
