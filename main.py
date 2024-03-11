@@ -39,6 +39,10 @@ class MyGrid(GridLayout):
         name = f"{first} {last}"
         age = self.age.text
 
+        self.first_name.text = ""
+        self.last_name.text = ""
+        self.age.text = ""
+
         print(f"Name: {name.title()}")
         print(f"Age: {age}")
 
