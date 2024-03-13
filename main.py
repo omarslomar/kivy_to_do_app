@@ -88,18 +88,23 @@ class MyGrid(GridLayout):
     """All button press functions. for minor presses and the one big one"""
     def MAC_small_button(self, instance):
         print(f"Done! Completed task: {self.to_do_MAC.text}")
+        self.to_do_MAC.text = "Done!"
 
     def POS_small_button(self, instance):
         print(f"Done! Completed task: {self.to_do_POS.text}")
+        self.to_do_POS.text = "Done!"
     
     def EVR_small_button(self, instance):
         print(f"Done! Completed task: {self.to_do_EVR.text}")
+        self.to_do_EVR.text = "Done!"
 
     def CODING_small_button(self, instance):
         print(f"Done! Completed task: {self.to_do_CODING.text}")
+        self.to_do_CODING.text = "Done!"
 
     def EXTRA_small_button(self, instance):
         print(f"Done! Completed task: {self.to_do_EXTRA.text}")
+        self.to_do_EXTRA.text = "Done!"
 
     def all_done_button(self, instance):
         message = ("Congratulations! You have completed all your tasks!")
